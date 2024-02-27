@@ -1,29 +1,46 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { getIdsFetch } from '../../utils/Api/api';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { getIdsFetch } from '../utils/api/api';
+import { IGet_ids } from '../utils/interfaces/api.interface';
+import { IGetIdsSchema } from '../utils/interfaces/slice.interface';
 
-const fetchIds = createAsyncThunk('users/fetchByIdStatus', async (userId: number, thunkAPI) => {
-  const response = await getIdsFetch();
-  console.log(response);
-  return response.data;
-});
-
-const getProductList = createSlice({
-  name: 'getIds',
-  ids: [''],
-  initialState: {
-    isLoading: false,
-    ids: ['']
-  },
-  reducers: {},
-  extraReducers: builder => {
-    // Add reducers for additional action types here, and handle loading state as needed
-    builder.addCase(fetchIds.fulfilled, (state, action) => {
-      // Add user to the state array
-      state.entities.push(action.payload);
-    });
+export const fetchIds = createAsyncThunk('ids/fetchIds', async (_, thunkAPI) => {
+  const { rejectWithValue } = thunkAPI;
+  try {
+    const response = await getIdsFetch();
+    console.log(response);
+    return response;
+  } catch (error) {
+    return rejectWithValue(error);
   }
 });
 
-export const { setIsLoading } = getProductList.actions;
+const initialState: IGetIdsSchema = {
+  isLoading: false,
+  error: '',
+  ids: ['']
+};
 
-export const isLoadingReducer = getProductList.reducer;
+const getIds = createSlice({
+  name: 'ids',
+  initialState,
+  reducers: {},
+  extraReducers: builder => {
+    builder
+      .addCase(fetchIds.pending, (state: IGetIdsSchema) => {
+        state.isLoading = true;
+        state.error = '';
+      })
+      .addCase(fetchIds.fulfilled, (state: IGetIdsSchema, { payload }) => {
+        state.isLoading = false;
+        state.ids = payload.result;
+      })
+      .addCase(fetchIds.rejected, (state: IGetIdsSchema, { payload }) => {
+        state.isLoading = false;
+        state.error = 'Ошибка запроса' + payload;
+      });
+  }
+});
+
+//export const {} = getProductList.actions;
+
+export const getIdsReducer = getIds.reducer;

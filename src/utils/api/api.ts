@@ -13,17 +13,17 @@ async function doFetch(url: string, params: object) {
 }
 
 export async function getIdsFetch() {
-  const url = RESTDB_URL_PATH + '/birthdays';
+  const url = RESTDB_URL_PATH;
   const params = {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       'X-Auth': getXAuth('Valantis')
     },
-    body: {
+    body: JSON.stringify({
       action: 'get_ids',
       params: { offset: 10, limit: 3 }
-    }
+    })
   };
 
   return await doFetch(url, params);
