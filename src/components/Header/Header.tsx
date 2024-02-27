@@ -7,7 +7,7 @@ export const Header: FC = () => {
     <div className={styles.header}>
       <a
         aria-label="на главную"
-        className="header__headertoplogo"
+        className={styles.header__headertoplogo}
         href="/">
         <svg
           width="144"
