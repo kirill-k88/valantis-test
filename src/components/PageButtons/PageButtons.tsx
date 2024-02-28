@@ -9,12 +9,34 @@ interface IPageButtonProps {
 }
 
 export const PageButton: FC<IPageButtonProps> = ({ curPage, setCurPage }) => {
+  const prevBtnHandle = () => {
+    if (curPage > 0) {
+      setCurPage(curVal => curVal - 1);
+    }
+  };
+
+  const nexBtnHandle = () => {
+    setCurPage(curVal => curVal + 1);
+  };
+
   return (
     <div className={styles.pagebutton}>
       <div className={styles.pagebutton__btnwrapper}>
-        <button className={styles.pagebutton__button}>{'<'}</button>
-        <p className={styles.pagebutton__text}>{curPage * PAGINATION_LIMIT}</p>
-        <button className={styles.pagebutton__button}>{'>'}</button>
+        <button
+          className={styles.pagebutton__button}
+          type="button"
+          disabled={!(curPage > 0)}
+          onClick={prevBtnHandle}>
+          {'<'}
+        </button>
+
+        <p className={styles.pagebutton__text}>{curPage}</p>
+        <button
+          className={styles.pagebutton__button}
+          type="button"
+          onClick={nexBtnHandle}>
+          {'>'}
+        </button>
       </div>
     </div>
   );
