@@ -4,6 +4,8 @@ import { IRequestErrorList } from '../interfaces/IRequestErrorList.interface';
 
 export const RESTDB_URL_PATH = 'https://api.valantis.store:41000/';
 
+export const PAGINATION_LIMIT = 10;
+
 export const INIT_IDS: IGet_ids = {
   result: ['']
 };

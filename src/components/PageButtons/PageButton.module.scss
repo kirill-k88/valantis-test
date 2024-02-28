@@ -1,0 +1,26 @@
+.pagebutton {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+
+  &__btnwrapper {
+    width: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__button {
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    font-size: 25px;
+    line-height: 25px;
+    font-weight: 700;
+  }
+
+  &__text {
+  }
+}

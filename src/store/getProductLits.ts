@@ -3,13 +3,14 @@ import { getIdsFetch } from '../utils/api/api';
 import { IGet_ids } from '../utils/interfaces/api.interface';
 import { IGetIdsSchema } from '../utils/interfaces/slice.interface';
 
-export const fetchIds = createAsyncThunk('ids/fetchIds', async (_, thunkAPI) => {
+export const fetchIds = createAsyncThunk('ids/fetchIds', async (offset: number, thunkAPI) => {
   const { rejectWithValue } = thunkAPI;
   try {
-    const response = await getIdsFetch();
+    const response = await getIdsFetch(offset);
     console.log(response);
     return response;
   } catch (error) {
+    console.log(error);
     return rejectWithValue(error);
   }
 });

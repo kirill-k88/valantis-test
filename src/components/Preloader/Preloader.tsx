@@ -1,6 +1,7 @@
+import { FC } from 'react';
 import './Preloader.css';
 
-export function Preloader() {
+export const Preloader: FC = () => {
   return (
     <div className="preloader">
       <div className="preloader__container">
@@ -8,4 +9,4 @@ export function Preloader() {
       </div>
     </div>
   );
-}
+};

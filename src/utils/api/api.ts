@@ -1,4 +1,4 @@
-import { RESTDB_URL_PATH } from '../constants/constants';
+import { PAGINATION_LIMIT, RESTDB_URL_PATH } from '../constants/constants';
 import { errorHandler } from '../functions/errorHandler';
 import { getXAuth } from '../functions/xAuthHelper';
 
@@ -12,7 +12,7 @@ async function doFetch(url: string, params: object) {
   return await res.json();
 }
 
-export async function getIdsFetch() {
+export async function getIdsFetch(offset: number) {
   const url = RESTDB_URL_PATH;
   const params = {
     method: 'POST',
@@ -22,7 +22,7 @@ export async function getIdsFetch() {
     },
     body: JSON.stringify({
       action: 'get_ids',
-      params: { offset: 10, limit: 3 }
+      params: { offset: offset, limit: PAGINATION_LIMIT }
     })
   };
 
