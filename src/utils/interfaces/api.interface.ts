@@ -4,9 +4,9 @@ export interface IGet_ids {
 
 export interface IItem {
   brand: string | null;
-  id: string;
-  price: number;
-  product: string;
+  id: string | null;
+  price: number | null;
+  product: string | null;
 }
 
 export interface IGet_items {

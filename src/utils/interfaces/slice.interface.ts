@@ -2,7 +2,7 @@ import { IItem } from './api.interface';
 
 export interface IGetProductsReducerSchema {
   isLoading: boolean;
-  error: string;
+  error: string | null;
   products: Array<IItem>;
 }
 

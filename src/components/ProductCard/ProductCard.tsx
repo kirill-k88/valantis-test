@@ -9,9 +9,9 @@ interface IProductCardProps {
 export const ProductCard: FC<IProductCardProps> = ({ product }) => {
   return (
     <div className={styles.productcard}>
-      <h2 className={styles.productcard__brand}>{product.brand}</h2>
-      <h2 className={styles.productcard__product}>{product.product}</h2>
-      <h2 className={styles.productcard__price}>{product.price}</h2>
+      <h2 className={styles.productcard__brand}>{product.brand || ''}</h2>
+      <h2 className={styles.productcard__product}>{product.product || ''}</h2>
+      <h2 className={styles.productcard__price}>{`${product.price || ''} `}&#8381;</h2>
     </div>
   );
 };

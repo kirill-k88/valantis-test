@@ -1,6 +1,7 @@
 .pagebutton {
   width: 100%;
   padding: 10px;
+  padding-left: 25px;
   display: flex;
   justify-content: start;
   align-items: center;
@@ -20,11 +21,29 @@
     font-size: 25px;
     line-height: 25px;
     font-weight: 700;
+    color: goldenrod;
+    background-color: white;
+    border-radius: 2px;
+    border: none;
+    transition: all 0.3s;
+
+    &:hover {
+      opacity: 0.6;
+    }
+
+    &_disable {
+      color: beige;
+    }
   }
 
   &__text {
     font-size: 30px;
     line-height: 30px;
     font-weight: 400;
+    border-radius: 50%;
+    display: inline-block;
+    min-width: 30px;
+    color: crimson;
+    background-color: antiquewhite;
   }
 }

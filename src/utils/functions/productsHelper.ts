@@ -5,7 +5,7 @@ export const getUniqueProducts = (arr: Array<IItem>) => {
   const uniqueProducts: Array<IItem> = [];
   if (arr.length) {
     arr.forEach(p => {
-      if (!uniqueArr.includes(p.id)) {
+      if (p.id && !uniqueArr.includes(p.id)) {
         uniqueArr.push(p.id);
         uniqueProducts.push(p);
       }

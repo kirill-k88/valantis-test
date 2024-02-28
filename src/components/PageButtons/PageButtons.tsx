@@ -1,7 +1,6 @@
 import { FC, Dispatch, SetStateAction } from 'react';
 
 import styles from './PageButton.module.scss';
-import { PAGINATION_LIMIT } from '../../utils/constants/constants';
 
 interface IPageButtonProps {
   curPage: number;
@@ -23,18 +22,18 @@ export const PageButton: FC<IPageButtonProps> = ({ curPage, setCurPage }) => {
     <div className={styles.pagebutton}>
       <div className={styles.pagebutton__btnwrapper}>
         <button
-          className={styles.pagebutton__button}
+          className={`${styles.pagebutton__button} ${
+            !(curPage > 0) && styles.pagebutton__button_disable
+          }`}
           type="button"
           disabled={!(curPage > 0)}
-          onClick={prevBtnHandle}>
+          onClick={prevBtnHandle}
+        >
           {'<'}
         </button>
 
-        <p className={styles.pagebutton__text}>{curPage}</p>
-        <button
-          className={styles.pagebutton__button}
-          type="button"
-          onClick={nexBtnHandle}>
+        <p className={styles.pagebutton__text}>{curPage + 1}</p>
+        <button className={styles.pagebutton__button} type="button" onClick={nexBtnHandle}>
           {'>'}
         </button>
       </div>

@@ -4,21 +4,10 @@ import { IRequestErrorList } from '../interfaces/IRequestErrorList.interface';
 
 export const RESTDB_URL_PATH = 'https://api.valantis.store:41000/';
 
-export const PAGINATION_LIMIT = 10;
+export const PAGINATION_LIMIT = 50;
 
 export const INIT_IDS: IGet_ids = {
   result: ['']
-};
-
-export const INIT_ITEMS: IGet_items = {
-  result: [
-    {
-      brand: 'brand',
-      id: '1789ecf3-f81c-4f49-ada2-83804dcc74b0',
-      price: 16700.0,
-      product: 'Золотое кольцо с бриллиантами'
-    }
-  ]
 };
 
 export const INITIAL_REQUEST_ERROR: IRequestError = {
