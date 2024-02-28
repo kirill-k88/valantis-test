@@ -32,11 +32,11 @@ export const App: FC = () => {
   return (
     <div className="App">
       <Header />
-      <PageButton curPage={curPage} setCurPage={setCurPage} />
       {isLoading ? (
         <Preloader />
       ) : (
         <>
+          <PageButton curPage={curPage} setCurPage={setCurPage} />
           <ProductsGrid curPage={curPage} products={products} />{' '}
           <PageButton curPage={curPage} setCurPage={setCurPage} />
         </>
