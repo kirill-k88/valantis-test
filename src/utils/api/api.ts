@@ -28,3 +28,20 @@ export async function getIdsFetch(offset: number) {
 
   return await doFetch(url, params);
 }
+
+export async function getProductsFetch(ids: [string]) {
+  const url = RESTDB_URL_PATH;
+  const params = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Auth': getXAuth('Valantis')
+    },
+    body: JSON.stringify({
+      action: 'get_items',
+      params: { ids: ids }
+    })
+  };
+
+  return await doFetch(url, params);
+}

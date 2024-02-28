@@ -2,7 +2,7 @@ export interface IGet_ids {
   result: [string];
 }
 
-interface IItem {
+export interface IItem {
   brand: string | null;
   id: string;
   price: number;

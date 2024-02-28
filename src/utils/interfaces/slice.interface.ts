@@ -1,7 +1,10 @@
-export interface IGetIdsSchema {
+import { IItem } from './api.interface';
+
+export interface IGetProductsReducerSchema {
   isLoading: boolean;
   error: string;
   ids: [string];
+  products: Array<IItem>;
 }
 
 export interface IIsLoading {
