@@ -10,6 +10,7 @@ import { PageButton } from '../PageButtons/PageButtons';
 import { Preloader } from '../Preloader/Preloader';
 import { ProductsGrid } from '../ProductsGrid/ProductsGrid';
 import { fetchBrands } from '../../store/getProductBrands';
+import { PopupFilter } from '../PopupFilter/PopupFilter';
 
 export const App: FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -22,6 +23,7 @@ export const App: FC = () => {
   const [curPage, setCurPage] = useState(0);
   const [pages, setPages] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [isPopupVisible, setIsPopupVisible] = useState(true);
 
   useEffect(() => {
     if (isGetProductsLoading || isGetProductBrandsLoading) {
@@ -66,6 +68,10 @@ export const App: FC = () => {
           />
         </>
       )}
+      <PopupFilter
+        isPopupVisible={isPopupVisible}
+        setIsPopupVisible={setIsPopupVisible}
+      />
     </div>
   );
 };
