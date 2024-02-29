@@ -9,7 +9,8 @@ interface IPopupFilter {
 }
 
 export const PopupFilter: FC<IPopupFilter> = ({ isPopupVisible, setIsPopupVisible }) => {
-  const backgroundClickHandle = () => {
+  const backgroundClickHandle = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    e.stopPropagation();
     setIsPopupVisible(false);
   };
 
