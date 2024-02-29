@@ -1,6 +1,7 @@
 import { Dispatch, FC, SetStateAction } from 'react';
 
 import styles from './PopupFilter.module.scss';
+import { FilterForm } from '../FilterForm/FilterForm';
 
 interface IPopupFilter {
   isPopupVisible: boolean;
@@ -14,12 +15,14 @@ export const PopupFilter: FC<IPopupFilter> = ({ isPopupVisible, setIsPopupVisibl
 
   return (
     <div
-      className={styles.popupfilter}
+      className={`${styles.popupfilter} ${isPopupVisible && styles.popupfilter_active}`}
       onClick={backgroundClickHandle}>
       <div
         className={`${styles.popupfilter__container} ${
           isPopupVisible && styles.popupfilter__container_active
-        }`}></div>
+        }`}>
+        <FilterForm />
+      </div>
     </div>
   );
 };

@@ -1,9 +1,8 @@
 .pagebutton {
-  width: 100%;
-  padding: 10px;
-  padding-left: 25px;
+  width: calc(100% - 50px);
+  padding: 10px 25px;
   display: flex;
-  justify-content: start;
+  justify-content: space-between;
   align-items: center;
 
   &__btnwrapper {
@@ -21,7 +20,7 @@
     font-size: 25px;
     line-height: 25px;
     font-weight: 700;
-    color: goldenrod;
+    color: #daa520;
     background-color: white;
     border-radius: 2px;
     border: none;

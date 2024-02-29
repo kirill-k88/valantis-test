@@ -23,7 +23,7 @@ export const App: FC = () => {
   const [curPage, setCurPage] = useState(0);
   const [pages, setPages] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
-  const [isPopupVisible, setIsPopupVisible] = useState(true);
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
 
   useEffect(() => {
     if (isGetProductsLoading || isGetProductBrandsLoading) {
@@ -57,6 +57,7 @@ export const App: FC = () => {
           <PageButton
             curPage={curPage}
             setCurPage={setCurPage}
+            setIsPopupVisible={setIsPopupVisible}
           />
           <ProductsGrid
             curPage={curPage}
@@ -65,6 +66,7 @@ export const App: FC = () => {
           <PageButton
             curPage={curPage}
             setCurPage={setCurPage}
+            setIsPopupVisible={setIsPopupVisible}
           />
         </>
       )}
