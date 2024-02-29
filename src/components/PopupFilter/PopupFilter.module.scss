@@ -13,15 +13,18 @@
   &__container {
     position: fixed;
     top: 0;
-    right: 0;
+    right: -320px;
     height: 100vh;
-    width: 0;
-    background-color: rgba(0, 0, 0, 0.6);
+    width: 320px;
+    background-color: rgba(0, 0, 0, 0.8);
     z-index: 2;
     transition: all 0.5s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     &_active {
-      width: 320px;
+      right: 0;
     }
   }
 }

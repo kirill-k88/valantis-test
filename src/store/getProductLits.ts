@@ -1,21 +1,32 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getIdsFetch, getProductsFetch } from '../utils/api/api';
-import { IGetProductsReducerSchema } from '../utils/interfaces/slice.interface';
+import { getFiltredProductsFetch, getIdsFetch, getProductsFetch } from '../utils/api/api';
+import { IGetProductsReducerSchema, IparamList } from '../utils/interfaces/slice.interface';
 import { getUniqueProductList, getUniqueProducts } from '../utils/functions/productsHelper';
 
-export const fetchIds = createAsyncThunk('ids/fetchIds', async (offset: number, thunkAPI) => {
-  const { rejectWithValue } = thunkAPI;
-  try {
-    let response = await getIdsFetch(offset);
+interface IfetchIdsParams {
+  offset: number;
+  isFilterd: boolean;
+  filter?: IparamList;
+}
 
-    response = await getProductsFetch(response.result);
+export const fetchIds = createAsyncThunk(
+  'ids/fetchIds',
+  async (params: IfetchIdsParams, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
+    try {
+      let response = params.isFilterd
+        ? await getFiltredProductsFetch(params.filter)
+        : await getIdsFetch(params.offset);
 
-    return response.result;
-  } catch (error) {
-    console.log(error);
-    return rejectWithValue(error);
+      response = await getProductsFetch(response.result);
+
+      return response.result;
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue(error);
+    }
   }
-});
+);
 
 const initialState: IGetProductsReducerSchema = {
   isGetProductsLoading: false,

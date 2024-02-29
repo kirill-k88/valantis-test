@@ -1,6 +1,7 @@
 import { PAGINATION_LIMIT, RESTDB_URL_PATH } from '../constants/constants';
 import { errorHandler } from '../functions/errorHandler';
 import { getXAuth } from '../functions/xAuthHelper';
+import { IparamList } from '../interfaces/slice.interface';
 
 async function doFetch(url: string, params: object) {
   const res = await fetch(url, params);
@@ -57,6 +58,30 @@ export async function getProductBrandsFetch() {
     body: JSON.stringify({
       action: 'get_fields',
       params: { field: 'brand', offset: 0, limit: 999 }
+    })
+  };
+
+  return await doFetch(url, params);
+}
+
+export async function getFiltredProductsFetch(args: IparamList) {
+  const url = RESTDB_URL_PATH;
+
+  const paramList: IparamList = {};
+
+  if (args.price) paramList.price = args.price;
+  if (args.brand) paramList.brand = args.brand;
+  if (args.product) paramList.product = args.product;
+
+  const params = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Auth': getXAuth('Valantis')
+    },
+    body: JSON.stringify({
+      action: 'filter',
+      params: paramList
     })
   };
 

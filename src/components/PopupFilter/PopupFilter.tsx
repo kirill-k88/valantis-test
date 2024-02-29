@@ -17,11 +17,13 @@ export const PopupFilter: FC<IPopupFilter> = ({ isPopupVisible, setIsPopupVisibl
   return (
     <div
       className={`${styles.popupfilter} ${isPopupVisible && styles.popupfilter_active}`}
-      onClick={backgroundClickHandle}>
+      onClick={backgroundClickHandle}
+    >
       <div
         className={`${styles.popupfilter__container} ${
           isPopupVisible && styles.popupfilter__container_active
-        }`}>
+        }`}
+      >
         <FilterForm />
       </div>
     </div>

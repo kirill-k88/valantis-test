@@ -15,3 +15,9 @@ export interface IGetBrandsReducerSchema {
   error: string | null;
   brands: Array<string | null>;
 }
+
+export interface IparamList {
+  price?: number;
+  brand?: string;
+  product?: string;
+}
