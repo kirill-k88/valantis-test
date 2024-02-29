@@ -2,11 +2,13 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import { isLoadingReducer } from './isloadingSlice';
 import { getProductsReducer } from './getProductLits';
+import { getProductBrandsReducer } from './getProductBrands';
 
 export const store = configureStore({
   reducer: {
     isLoadingReducer,
-    getProductsReducer
+    getProductsReducer,
+    getProductBrandsReducer
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

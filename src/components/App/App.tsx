@@ -9,12 +9,27 @@ import { PAGINATION_LIMIT } from '../../utils/constants/constants';
 import { PageButton } from '../PageButtons/PageButtons';
 import { Preloader } from '../Preloader/Preloader';
 import { ProductsGrid } from '../ProductsGrid/ProductsGrid';
+import { fetchBrands } from '../../store/getProductBrands';
 
 export const App: FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { isLoading, products } = useSelector((store: RootStore) => store.getProductsReducer);
+  const { isGetProductsLoading, products } = useSelector(
+    (store: RootStore) => store.getProductsReducer
+  );
+  const { isGetProductBrandsLoading, brands } = useSelector(
+    (store: RootStore) => store.getProductBrandsReducer
+  );
   const [curPage, setCurPage] = useState(0);
   const [pages, setPages] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (isGetProductsLoading || isGetProductBrandsLoading) {
+      setIsLoading(true);
+    } else {
+      setIsLoading(false);
+    }
+  }, [isGetProductsLoading, isGetProductBrandsLoading]);
 
   useEffect(() => {
     if (curPage > pages) {
@@ -27,6 +42,7 @@ export const App: FC = () => {
 
   useEffect(() => {
     dispatch(fetchIds(curPage * PAGINATION_LIMIT));
+    dispatch(fetchBrands());
   }, []);
 
   return (
@@ -36,9 +52,18 @@ export const App: FC = () => {
         <Preloader />
       ) : (
         <>
-          <PageButton curPage={curPage} setCurPage={setCurPage} />
-          <ProductsGrid curPage={curPage} products={products} />{' '}
-          <PageButton curPage={curPage} setCurPage={setCurPage} />
+          <PageButton
+            curPage={curPage}
+            setCurPage={setCurPage}
+          />
+          <ProductsGrid
+            curPage={curPage}
+            products={products}
+          />{' '}
+          <PageButton
+            curPage={curPage}
+            setCurPage={setCurPage}
+          />
         </>
       )}
     </div>

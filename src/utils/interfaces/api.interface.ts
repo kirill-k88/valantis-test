@@ -1,5 +1,5 @@
 export interface IGet_ids {
-  result: [string];
+  result: Array<string>;
 }
 
 export interface IItem {
@@ -10,5 +10,7 @@ export interface IItem {
 }
 
 export interface IGet_items {
-  result: [IItem];
+  result: Array<IItem>;
 }
+
+export type IGetProductBrands = Array<string | null>;

@@ -45,3 +45,20 @@ export async function getProductsFetch(ids: [string]) {
 
   return await doFetch(url, params);
 }
+
+export async function getProductBrandsFetch() {
+  const url = RESTDB_URL_PATH;
+  const params = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Auth': getXAuth('Valantis')
+    },
+    body: JSON.stringify({
+      action: 'get_fields',
+      params: { field: 'brand', offset: 0, limit: 999 }
+    })
+  };
+
+  return await doFetch(url, params);
+}

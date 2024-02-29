@@ -1,4 +1,4 @@
-import { IItem } from '../interfaces/api.interface';
+import { IGetProductBrands, IItem } from '../interfaces/api.interface';
 
 export const getUniqueProducts = (arr: Array<IItem>) => {
   const uniqueArr: Array<string> = [];
@@ -12,4 +12,31 @@ export const getUniqueProducts = (arr: Array<IItem>) => {
     });
   }
   return uniqueProducts;
+};
+
+export const getUniqueBrands = (allBrends: IGetProductBrands) => {
+  const brandsSet = new Set(allBrends);
+  return Array.from(brandsSet);
+};
+
+export const getUniqueProductList = (
+  curPList: Array<IItem>,
+  newPList: Array<IItem>
+): Array<IItem> => {
+  const uniqueArr: Array<IItem> = [];
+
+  const ids: Array<string> = [];
+
+  curPList.forEach(p => {
+    p.id && ids.push(p.id);
+  });
+
+  newPList.forEach(p => {
+    if (p.id && !ids.includes(p.id)) {
+      ids.push(p.id);
+      uniqueArr.push(p);
+    }
+  });
+
+  return uniqueArr;
 };

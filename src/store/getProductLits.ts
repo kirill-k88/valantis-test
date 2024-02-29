@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getIdsFetch, getProductsFetch } from '../utils/api/api';
 import { IGetProductsReducerSchema } from '../utils/interfaces/slice.interface';
-import { getUniqueProducts } from '../utils/functions/productsHelper';
+import { getUniqueProductList, getUniqueProducts } from '../utils/functions/productsHelper';
 
 export const fetchIds = createAsyncThunk('ids/fetchIds', async (offset: number, thunkAPI) => {
   const { rejectWithValue } = thunkAPI;
@@ -10,9 +10,7 @@ export const fetchIds = createAsyncThunk('ids/fetchIds', async (offset: number, 
 
     response = await getProductsFetch(response.result);
 
-    const uniqueProducts = getUniqueProducts(response.result);
-
-    return uniqueProducts;
+    return response.result;
   } catch (error) {
     console.log(error);
     return rejectWithValue(error);
@@ -20,7 +18,7 @@ export const fetchIds = createAsyncThunk('ids/fetchIds', async (offset: number, 
 });
 
 const initialState: IGetProductsReducerSchema = {
-  isLoading: false,
+  isGetProductsLoading: false,
   error: null,
   products: [
     {
@@ -39,15 +37,17 @@ const getProducts = createSlice({
   extraReducers: builder => {
     builder
       .addCase(fetchIds.pending, (state: IGetProductsReducerSchema) => {
-        state.isLoading = true;
+        state.isGetProductsLoading = true;
         state.error = '';
       })
       .addCase(fetchIds.fulfilled, (state: IGetProductsReducerSchema, { payload }) => {
-        state.isLoading = false;
-        state.products = state.products.length > 1 ? [...state.products, ...payload] : payload;
+        state.isGetProductsLoading = false;
+        const unqueProductList = getUniqueProductList(state.products, payload);
+        state.products =
+          state.products.length > 1 ? [...state.products, ...unqueProductList] : unqueProductList;
       })
       .addCase(fetchIds.rejected, (state: IGetProductsReducerSchema, { payload }) => {
-        state.isLoading = false;
+        state.isGetProductsLoading = false;
         state.error = 'Ошибка запроса' + payload;
       });
   }
