@@ -1,7 +1,7 @@
 import { PAGINATION_LIMIT, RESTDB_URL_PATH } from '../constants/constants';
 import { errorHandler } from '../functions/errorHandler';
 import { getXAuth } from '../functions/xAuthHelper';
-import { IparamList } from '../interfaces/slice.interface';
+import { IfilterList } from '../interfaces/api.interface';
 
 async function doFetch(url: string, params: object) {
   const res = await fetch(url, params);
@@ -64,14 +64,14 @@ export async function getProductBrandsFetch() {
   return await doFetch(url, params);
 }
 
-export async function getFiltredProductsFetch(args: IparamList) {
+export async function getFiltredProductsFetch(args: IfilterList) {
   const url = RESTDB_URL_PATH;
 
-  const paramList: IparamList = {};
+  const paramList: IfilterList = {};
 
-  if (args.price) paramList.price = args.price;
-  if (args.brand) paramList.brand = args.brand;
-  if (args.product) paramList.product = args.product;
+  if (args.price && args.price !== 0) paramList.price = args.price;
+  if (args.brand && args.brand !== '') paramList.brand = args.brand;
+  if (args.product && args.product !== '') paramList.product = args.product;
 
   const params = {
     method: 'POST',

@@ -17,7 +17,7 @@ export const App: FC = () => {
   const { isGetProductsLoading, products } = useSelector(
     (store: RootStore) => store.getProductsReducer
   );
-  const { isGetProductBrandsLoading, brands } = useSelector(
+  const { isGetProductBrandsLoading } = useSelector(
     (store: RootStore) => store.getProductBrandsReducer
   );
   const [curPage, setCurPage] = useState(0);
@@ -36,14 +36,14 @@ export const App: FC = () => {
   useEffect(() => {
     if (curPage > pages) {
       if (!isLoading) {
-        dispatch(fetchIds(curPage * PAGINATION_LIMIT));
+        dispatch(fetchIds({ offset: curPage * PAGINATION_LIMIT }));
       }
       setPages(curPage);
     }
   }, [curPage]);
 
   useEffect(() => {
-    dispatch(fetchIds(curPage * PAGINATION_LIMIT));
+    dispatch(fetchIds({ offset: curPage * PAGINATION_LIMIT }));
     dispatch(fetchBrands());
   }, []);
 
@@ -62,15 +62,11 @@ export const App: FC = () => {
           <ProductsGrid
             curPage={curPage}
             products={products}
-          />{' '}
-          <PageButton
-            curPage={curPage}
-            setCurPage={setCurPage}
-            setIsPopupVisible={setIsPopupVisible}
           />
         </>
       )}
       <PopupFilter
+        setCurPage={setCurPage}
         isPopupVisible={isPopupVisible}
         setIsPopupVisible={setIsPopupVisible}
       />

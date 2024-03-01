@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import { isLoadingReducer } from './isloadingSlice';
+import { isFilterdReducer } from './isFilterdSlice';
 import { getProductsReducer } from './getProductLits';
 import { getProductBrandsReducer } from './getProductBrands';
 
 export const store = configureStore({
   reducer: {
-    isLoadingReducer,
+    isFilterdReducer,
     getProductsReducer,
     getProductBrandsReducer
   },

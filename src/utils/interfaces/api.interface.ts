@@ -14,3 +14,9 @@ export interface IGet_items {
 }
 
 export type IGetProductBrands = Array<string | null>;
+
+export interface IfilterList {
+  price?: number;
+  brand?: string;
+  product?: string;
+}
