@@ -12,7 +12,8 @@
 ## Снимок основной страницы:
 
 <div style="border: 1px solid black; padding: 5px;">
-  <img src="https://github.com/kirill-k88/movies-explorer-frontend/assets/100775872/baa5fc6e-b658-4959-b5c5-1113983f91e5" alt="screenShot" style="width: 500px; height: 500px;">
+
+  <img src="https://github.com/kirill-k88/valantis-test/assets/100775872/cc8b1300-a270-4f4d-9dd3-8e0722e18eaf" alt="screenShot" style="width: 700px; height: 500px;">
 </div>
 
 ## Ссылки
